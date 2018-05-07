@@ -30,15 +30,5 @@ namespace DataProcessing.Builders
         {
             return Build();
         }
-
-        ICondition IBuilder<ICondition>.Create()
-        {
-            return Create();
-        }
-
-        void IBuilder<ICondition>.Initialize(ICondition obj)
-        {
-            Initialize((T)obj);
-        }
     }
 }
