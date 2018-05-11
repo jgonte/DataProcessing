@@ -49,12 +49,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builders\ConditionBuildersTests.cs" />
-    <Compile Include="Builders\RulesTests.cs" />
-    <Compile Include="BusinessRules\BusinessRulesTests.cs" />
-    <Compile Include="ConditionTests.cs" />
+    <Compile Include="Builders\RuleSetBuildersTests.cs" />
+    <Compile Include="Builders\RuleBuildersTests.cs" />
+    <Compile Include="BusinessRules\RulesTests.cs" />
+    <Compile Include="BusinessRules\RuleSetsTests.cs" />
+    <Compile Include="Conditions\ConditionTests.cs" />
     <Compile Include="Integration\FixedLengthTextFileTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TasksTests.cs" />
+    <Compile Include="Tasks\TasksTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

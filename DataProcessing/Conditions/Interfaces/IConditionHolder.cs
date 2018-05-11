@@ -1,6 +1,6 @@
 ﻿using DataProcessing.Conditions;
 
-namespace DataProcessing.BusinessRules
+namespace DataProcessing.Conditions
 {
     /// <summary>
     /// Defines an object that holds a condition

@@ -3,9 +3,7 @@ using Utilities;
 
 namespace DataProcessing.Conditions
 {
-    public interface ICondition : 
-        IIdentified<int>, 
-        IDescribed
+    public interface ICondition : IDescribed
     {
         bool Evaluate(IDictionary<string, object> record);
 

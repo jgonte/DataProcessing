@@ -10,7 +10,7 @@ namespace DataProcessing.Tests.Conditions
         [TestMethod]
         public void FieldEqualsCondition_Equals_Test()
         {
-            var condition = new FieldEqualsCondition
+            var condition = new FieldIsEqual<int>
             {
                 FieldName = "Age",
                 Value = 25
@@ -27,7 +27,7 @@ namespace DataProcessing.Tests.Conditions
         [TestMethod]
         public void FieldEqualsCondition_Not_Equals_Test()
         {
-            var condition = new FieldEqualsCondition
+            var condition = new FieldIsEqual<int>
             {
                 FieldName = "Age",
                 Value = 25
@@ -35,7 +35,7 @@ namespace DataProcessing.Tests.Conditions
 
             var record = new Dictionary<string, object>
             {
-                { "Age", "25" }
+                { "Age", 24 }
             };
 
             Assert.IsFalse(condition.Evaluate(record));
@@ -48,17 +48,17 @@ namespace DataProcessing.Tests.Conditions
             {
                 Conditions = new List<ICondition>
                 {
-                    new FieldEqualsCondition
+                    new FieldIsEqual<char>
                     {
                         FieldName = "Gender",
                         Value = 'M'
                     },
-                    new FieldEqualsCondition
+                    new FieldIsEqual<int>
                     {
                         FieldName = "Age",
                         Value = 25
                     },
-                    new FieldEqualsCondition
+                    new FieldIsEqual<string>
                     {
                         FieldName = "Name",
                         Value = "David"
@@ -87,12 +87,12 @@ namespace DataProcessing.Tests.Conditions
                     {
                         Conditions = new List<ICondition>
                         {
-                            new FieldEqualsCondition
+                            new FieldIsEqual<char>
                             {
                                 FieldName = "Gender",
                                 Value = 'F'
                             },
-                            new FieldEqualsCondition
+                            new FieldIsEqual<int>
                             {
                                 FieldName = "Age",
                                 Value = 25
@@ -103,12 +103,12 @@ namespace DataProcessing.Tests.Conditions
                     {
                         Conditions = new List<ICondition>
                         {
-                            new FieldEqualsCondition
+                            new FieldIsEqual<char>
                             {
                                 FieldName = "Gender",
                                 Value = 'M'
                             },
-                            new FieldEqualsCondition
+                            new FieldIsEqual<string>
                             {
                                 FieldName = "Name",
                                 Value = "David"

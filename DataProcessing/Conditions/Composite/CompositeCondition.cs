@@ -1,24 +1,20 @@
 ﻿using System.Collections.Generic;
-using Utilities;
+using System.Linq;
 
 namespace DataProcessing.Conditions
 {
-    public abstract class CompositeCondition : ICondition, 
-        IConditionsHolder,
-        ILogicalOperatorHolder
+    public abstract class CompositeCondition : ICondition,
+        IFieldNamesHolder, 
+        IConditionsHolder
     {
-        public int Id { get; set; }
-
         public string Description { get; set; }
-
-        public LogicalOperators Operator { get; set; }
 
         public IEnumerable<ICondition> Conditions { get; set; }
 
-        public CompositeCondition(LogicalOperators @operator)
-        {
-            Operator = @operator;
-        }
+        public IEnumerable<string> FieldNames => Conditions
+            .Where(c => c is IFieldNamesHolder)
+            .Cast<IFieldNamesHolder>()
+            .SelectMany(c => c.FieldNames);
 
         public abstract bool Evaluate(IDictionary<string, object> record);
 

@@ -1,6 +1,7 @@
 ﻿using DataProcessing.Conditions;
 using DataProcessing.Tasks;
 using System.Collections.Generic;
+using System.Linq;
 using Utilities;
 
 namespace DataProcessing.BusinessRules
@@ -27,7 +28,7 @@ namespace DataProcessing.BusinessRules
 
         public RuleSet OwnerRuleSet { get; set; }
 
-        public void Fire(Dictionary<string, object> record)
+        public void Fire(RuleContext context, Dictionary<string, object> record)
         {
             if (!IsActive)
             {
@@ -36,8 +37,15 @@ namespace DataProcessing.BusinessRules
 
             if (Condition.Evaluate(record))
             {
-                foreach (var task in Tasks)
+                if (Condition is IFieldNamesHolder)
                 {
+                    context.FieldNames = new HashSet<string>(((IFieldNamesHolder)Condition).FieldNames);
+                }
+
+                foreach (var task in Tasks.Where(t => t is IRuleContextHolder))
+                {
+                    ((IRuleContextHolder)task).RuleContext = context;
+
                     task.Execute();
                 }
             }

@@ -1,11 +1,12 @@
 ﻿using DataProcessing.Conditions;
+using Utilities;
 
 namespace DataProcessing.Tasks
 {
     /// <summary>
     /// Defines an executable task
     /// </summary>
-    public interface ITask
+    public interface ITask : IDescribed
     {
         void Execute();
 

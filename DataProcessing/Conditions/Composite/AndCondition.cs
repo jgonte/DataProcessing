@@ -6,10 +6,6 @@ namespace DataProcessing.Conditions
 {
     public class AndCondition : CompositeCondition
     {
-        public AndCondition() : base(LogicalOperators.And)
-        {
-        }
-
         public override bool Evaluate(IDictionary<string, object> record)
         {
             var result = Conditions.First().Evaluate(record);

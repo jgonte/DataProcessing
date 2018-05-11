@@ -1,26 +1,35 @@
-﻿using System.Collections.Generic;
-using Utilities;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DataProcessing.Conditions
 {
-    public abstract class FieldCondition : ICondition, 
-        IFieldNameHolder, 
-        IComparisonOperatorHolder
+    /// <summary>
+    /// Condition that has a field name
+    /// </summary>
+    public abstract class FieldCondition : ICondition,
+        IFieldNamesHolder,
+        IFieldNameHolder
     {
-        public int Id { get; set; }
-
         public string Description { get; set; }
 
         public string FieldName { get; set; }
 
-        public ComparisonOperators Operator { get; set; }
+        public IEnumerable<string> FieldNames => Enumerable.Repeat(FieldName, 1);
 
-        public FieldCondition(ComparisonOperators @operator)
+        public virtual bool Evaluate(IDictionary<string, object> record)
         {
-            Operator = @operator;
+            if (!record.ContainsKey(FieldName))
+            {
+                throw new InvalidOperationException($"Field of name: {FieldName} does not exist in the record.");
+            }
+
+            var value = record[FieldName];
+
+            return EvaluateValue(value);
         }
 
-        public abstract bool Evaluate(IDictionary<string, object> record);
+        internal abstract bool EvaluateValue(object value);
 
         public abstract void Format(IFormatter formatter);
     }

@@ -21,7 +21,12 @@ namespace DataProcessing.BusinessRules
         /// </summary>
         private bool _isHalted;
 
-        public void Fire(Dictionary<string, object> record)
+        /// <summary>
+        /// The messages generated when executing the rules
+        /// </summary>
+        public List<RuleMessage> Messages { get; set; } = new List<RuleMessage>();
+
+        public void Fire(Dictionary<string, object> record, int line)
         {
             _isHalted = false;
 
@@ -32,7 +37,17 @@ namespace DataProcessing.BusinessRules
                     break;
                 }
 
-                rule.Fire(record);
+                rule.Fire(new RuleContext(Messages, line), record);
+            }
+        }
+
+        public void Fire(IEnumerable<Dictionary<string, object>> records)
+        {
+            var i = 0;
+
+            foreach (var record in records)
+            {
+                Fire(record, ++i);
             }
         }
 
