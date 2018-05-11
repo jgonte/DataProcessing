@@ -12,7 +12,7 @@ namespace DataProcessing.Builders
     {
         string INamed.Name { get; set; }
 
-        List<RuleBuilder> IRuleBuildersHolder.RuleBuilders { get; set; }
+        List<RuleBuilder> IRuleBuildersHolder.RuleBuilders { get; set; } = new List<RuleBuilder>();
 
         public override void Initialize(RuleSet ruleSet)
         {

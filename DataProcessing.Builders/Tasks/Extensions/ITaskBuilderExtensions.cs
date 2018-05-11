@@ -4,10 +4,10 @@
     {
         #region Factory methods
 
-        public static ErrorMessageTaskBuilder ErrorMessage<T>(this T builder)
+        public static RuleMessageTaskBuilder Message<T>(this T builder, string message)
             where T : ITaskBuilder
         {
-            return new ErrorMessageTaskBuilder();
+            return new RuleMessageTaskBuilder(message);
         }
 
         #endregion

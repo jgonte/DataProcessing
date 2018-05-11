@@ -18,5 +18,13 @@ namespace DataProcessing.Builders
         {
             return Conditions(builder, factories.Select(f => f(null)).ToArray());
         }
+
+        public static T PrependConditions<T>(this T builder, params IConditionBuilder[] builders)
+            where T : IConditionBuildersHolder
+        {
+            builder.ConditionBuilders.InsertRange(0, builders);
+
+            return builder;
+        }
     }
 }

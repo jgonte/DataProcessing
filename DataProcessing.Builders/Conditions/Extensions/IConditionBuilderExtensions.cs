@@ -1,7 +1,4 @@
-﻿using DataProcessing.Conditions;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 
 namespace DataProcessing.Builders
 {
@@ -11,6 +8,20 @@ namespace DataProcessing.Builders
             where T : IConditionBuilder
         {
             return new FieldConditionBuilderProxy(name);
+        }
+
+        public static NotConditionBuilder Not<T>(this T builder, IConditionBuilder conditionBuilder)
+            where T : IConditionBuilder
+        {
+            return new NotConditionBuilder()
+                .Condition(conditionBuilder);
+        }
+
+        public static NotConditionBuilder Not<T>(this T builder, Func<IConditionBuilder, IConditionBuilder> factory)
+            where T : IConditionBuilder
+        {
+            return new NotConditionBuilder()
+                .Condition(factory);
         }
     }
 }

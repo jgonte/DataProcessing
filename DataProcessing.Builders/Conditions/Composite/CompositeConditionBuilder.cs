@@ -7,14 +7,12 @@ using Utilities.Builders;
 namespace DataProcessing.Builders
 {
     public abstract class CompositeConditionBuilder<T> : AbstractBuilder<T>,
+        IConditionBuilder,
         IDescribed,
-        ILogicalOperatorHolder,
         IConditionBuildersHolder
         where T : CompositeCondition
     {
         string IDescribed.Description { get; set; }
-
-        LogicalOperators ILogicalOperatorHolder.Operator { get; set; }
 
         List<IConditionBuilder> IConditionBuildersHolder.ConditionBuilders { get; set; } = new List<IConditionBuilder>();
 
@@ -22,9 +20,12 @@ namespace DataProcessing.Builders
         {
             condition.Description = ((IDescribed)this).Description;
 
-            condition.Operator = ((ILogicalOperatorHolder)this).Operator;
-
             condition.Conditions = ((IConditionBuildersHolder)this).ConditionBuilders.Select(b => b.Build());
+        }
+
+        ICondition IBuilder<ICondition>.Build()
+        {
+            return Build();
         }
     }
 }

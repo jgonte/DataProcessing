@@ -7,12 +7,13 @@ namespace DataProcessing.Builders
         /// <summary>
         /// Sets the value of the single value holder object
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">Builder type</typeparam>
+        /// <typeparam name="V">Value type</typeparam>
         /// <param name="builder"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static T Value<T>(this T builder, object value)
-            where T : ISingleValueHolder
+        public static T Value<T, V>(this T builder, V value)
+            where T : ISingleValueHolder<V>
         {
             builder.Value = value;
 
