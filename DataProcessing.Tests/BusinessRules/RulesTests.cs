@@ -112,18 +112,18 @@ namespace DataProcessing.Tests
                 },
                 Tasks = new List<ITask>
                 {
-                    new RuleMessageTask("Field must be numeric")
+                    new RuleMessageTask("Field is numeric")
                 }
             };
 
             var record = new Dictionary<string, object>
             {
-                { "Age", "0A" }
+                { "Age", "01" }
             };
 
             rule.Fire(context, record);
 
-            Assert.AreEqual("Field must be numeric", ((RuleMessageTask)rule.Tasks.Single()).Message);
+            Assert.AreEqual("Field is numeric", ((RuleMessageTask)rule.Tasks.Single()).Message);
 
             Assert.AreEqual("Age", context.FieldNames.Single());
 
@@ -135,7 +135,7 @@ namespace DataProcessing.Tests
 
             Assert.AreEqual("Age", message.FieldNames.Single());
 
-            Assert.AreEqual("Field must be numeric", message.Message);
+            Assert.AreEqual("Field is numeric", message.Message);
         }
 
         [TestMethod]

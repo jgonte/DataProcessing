@@ -1,4 +1,5 @@
 ﻿using DataProcessing.Conditions;
+using DataProcessing.Functions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
@@ -8,7 +9,7 @@ namespace DataProcessing.Tests.Conditions
     public class ConditionTests
     {
         [TestMethod]
-        public void FieldEqualsCondition_Equals_Test()
+        public void Field_Is_Equal_Test()
         {
             var condition = new FieldIsEqual<int>
             {
@@ -25,7 +26,7 @@ namespace DataProcessing.Tests.Conditions
         }
 
         [TestMethod]
-        public void FieldEqualsCondition_Not_Equals_Test()
+        public void Field_Is_Equal_With_Not_Equals_Test()
         {
             var condition = new FieldIsEqual<int>
             {
@@ -42,7 +43,7 @@ namespace DataProcessing.Tests.Conditions
         }
 
         [TestMethod]
-        public void FieldEqualsCondition_Equals_With_And_Test()
+        public void And_Conditions_With_Fields_Is_Equal_Test()
         {
             var condition = new AndCondition
             {
@@ -77,7 +78,7 @@ namespace DataProcessing.Tests.Conditions
         }
 
         [TestMethod]
-        public void FieldEqualsCondition_Equals_With_And_Combined_With_Or_Test()
+        public void And_Combined_With_Or_Conditions_Test()
         {
             var condition = new AndCondition
             {
@@ -123,6 +124,48 @@ namespace DataProcessing.Tests.Conditions
                 { "Gender", 'M' },
                 { "Age", 25 },
                 { "Name", "David" }
+            };
+
+            Assert.IsTrue(condition.Evaluate(record));
+        }
+
+        [TestMethod]
+        public void Field_Is_Numeric_With_Substring_Test()
+        {
+            var condition = new FieldIsNumeric
+            {
+                FieldName = "Identifier",
+                InputSource = new Substring
+                {
+                    StartIndex = 0,
+                    EndIndex = 3
+                }
+            };
+
+            var record = new Dictionary<string, object>
+            {
+                { "Identifier", "123Z" }
+            };
+
+            Assert.IsTrue(condition.Evaluate(record));
+        }
+
+        [TestMethod]
+        public void Field_Is_Zeroes_With_Substring_Test()
+        {
+            var condition = new FieldIsZeroes
+            {
+                FieldName = "Code",
+                InputSource = new Substring
+                {
+                    StartIndex = 0,
+                    EndIndex = 3
+                }
+            };
+
+            var record = new Dictionary<string, object>
+            {
+                { "Code", "000Z" }
             };
 
             Assert.IsTrue(condition.Evaluate(record));

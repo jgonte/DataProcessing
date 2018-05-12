@@ -17,7 +17,5 @@ namespace DataProcessing.Conditions
             .SelectMany(c => c.FieldNames);
 
         public abstract bool Evaluate(IDictionary<string, object> record);
-
-        public abstract void Format(IFormatter formatter);
     }
 }

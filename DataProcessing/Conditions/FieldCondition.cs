@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataProcessing.Functions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,13 +10,16 @@ namespace DataProcessing.Conditions
     /// </summary>
     public abstract class FieldCondition : ICondition,
         IFieldNamesHolder,
-        IFieldNameHolder
+        IFieldNameHolder,
+        IUnaryFunctionHolder
     {
         public string Description { get; set; }
 
         public string FieldName { get; set; }
 
         public IEnumerable<string> FieldNames => Enumerable.Repeat(FieldName, 1);
+
+        public IUnaryFunction InputSource { get; set; }
 
         public virtual bool Evaluate(IDictionary<string, object> record)
         {
@@ -26,11 +30,14 @@ namespace DataProcessing.Conditions
 
             var value = record[FieldName];
 
+            if (InputSource != null)
+            {
+                value = InputSource.Evaluate(value);
+            }
+
             return EvaluateValue(value);
         }
 
         internal abstract bool EvaluateValue(object value);
-
-        public abstract void Format(IFormatter formatter);
     }
 }

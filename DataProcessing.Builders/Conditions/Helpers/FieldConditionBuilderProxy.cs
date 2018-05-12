@@ -64,6 +64,12 @@ namespace DataProcessing.Builders
                 .FieldName(_fieldName);
         }
 
+        public FieldIsZeroesBuilder IsZeroes()
+        {
+            return new FieldIsZeroesBuilder()
+                .FieldName(_fieldName);
+        }
+
         public FieldIsBetweenBuilder<T> IsBetween<T>(T minValue, T maxValue) where T : IComparable<T>
         {
             return new FieldIsBetweenBuilder<T>()
@@ -72,9 +78,9 @@ namespace DataProcessing.Builders
                 .MaxValue(maxValue);
         }
 
-        public RegularExpressionConditionBuilder IsRegexMatch(string regularExpression)
+        public FieldIsRegularExpressionMatchBuilder IsRegularExpressionMatch(string regularExpression)
         {
-            return new RegularExpressionConditionBuilder()
+            return new FieldIsRegularExpressionMatchBuilder()
                 .FieldName(_fieldName)
                 .RegularExpression(regularExpression);
         }

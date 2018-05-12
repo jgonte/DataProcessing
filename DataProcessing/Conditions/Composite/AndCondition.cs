@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Utilities;
 
 namespace DataProcessing.Conditions
 {
@@ -16,11 +15,6 @@ namespace DataProcessing.Conditions
             }
 
             return result;
-        }
-
-        public override void Format(IFormatter formatter)
-        {
-            formatter.Format(this);
         }
     }
 }

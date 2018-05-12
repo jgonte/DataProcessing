@@ -1,5 +1,4 @@
-﻿using DataProcessing.Conditions;
-using Utilities;
+﻿using Utilities;
 
 namespace DataProcessing.Tasks
 {
@@ -9,7 +8,5 @@ namespace DataProcessing.Tasks
     public interface ITask : IDescribed
     {
         void Execute();
-
-        void Format(IFormatter formatter);
     }
 }

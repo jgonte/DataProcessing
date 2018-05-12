@@ -1,5 +1,6 @@
 ﻿using DataProcessing.Builders;
 using DataProcessing.Conditions;
+using DataProcessing.Functions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
@@ -58,6 +59,35 @@ namespace DataProcessing.Tests.Builders
             Assert.AreEqual("Age", innerCondition.FieldName);
 
             Assert.AreEqual(25, innerCondition.Value);
+        }
+
+        [TestMethod]
+        public void Field_Is_Numeric_Builder_Test()
+        {
+            Func<IConditionBuilder, IConditionBuilder> factory = c => c.Field("Age").IsNumeric();
+
+            var condition = (FieldIsNumeric)factory(null).Build();
+
+            Assert.AreEqual("Age", condition.FieldName);
+        }
+
+        [TestMethod]
+        public void Field_Is_Numeric_Builder_With_Substring_Test()
+        {
+            Func<IConditionBuilder, IConditionBuilder> factory = c => c.Field("Age").IsNumeric()
+                .InputSource(
+                    f => f.Substring().StartIndex(2).EndIndex(3)
+                );
+
+            var condition = (FieldIsNumeric)factory(null).Build();
+
+            Assert.AreEqual("Age", condition.FieldName);
+
+            var function = (Substring)condition.InputSource;
+
+            Assert.AreEqual(2, function.StartIndex);
+
+            Assert.AreEqual(3, function.EndIndex);
         }
 
         [TestMethod]

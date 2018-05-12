@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using DataProcessing.Conditions;
+using System.Linq;
 
 namespace DataProcessing.Builders
 {
@@ -8,6 +9,8 @@ namespace DataProcessing.Builders
         where T : MultipleValuedField<V>
     {
         List<V> IMultipleValuesHolder<V>.Values { get; set; } = new List<V>();
+
+        List<object> IMultipleValuesHolder.GetValues() => ((IMultipleValuesHolder<V>)this).Values.Cast<object>().ToList();
 
         public override void Initialize(T condition)
         {

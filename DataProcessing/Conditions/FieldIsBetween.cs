@@ -10,10 +10,5 @@ namespace DataProcessing.Conditions
         {
             return ((T)value).IsBetween(MinValue, MaxValue);
         }
-
-        public override void Format(IFormatter formatter)
-        {
-            formatter.Format(this);
-        }
     }
 }

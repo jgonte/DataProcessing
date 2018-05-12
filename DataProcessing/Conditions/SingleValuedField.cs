@@ -7,5 +7,7 @@
         ISingleValueHolder<T>
     {
         public T Value { get; set; }
+
+        public object GetValue() => Value;
     }
 }

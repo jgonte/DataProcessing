@@ -1,4 +1,5 @@
 ﻿using DataProcessing.Conditions;
+using DataProcessing.Functions;
 
 namespace DataProcessing.Builders
 {
@@ -14,5 +15,7 @@ namespace DataProcessing.Builders
 
             condition.Value = ((ISingleValueHolder<V>)this).Value;
         }
+
+        object ISingleValueHolder.GetValue() => ((ISingleValueHolder<V>)this).Value;
     }
 }

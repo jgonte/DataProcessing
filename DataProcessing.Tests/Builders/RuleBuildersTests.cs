@@ -174,7 +174,7 @@ namespace DataProcessing.Tests.Builders
                     c => c.Field("Age").IsNumeric()
                 )
                 .Tasks(
-                    a => a.Message("Age must be numeric")
+                    a => a.Message("Age is numeric")
                 );
 
             var rule = builder.Build();
@@ -187,7 +187,31 @@ namespace DataProcessing.Tests.Builders
 
             var task = (RuleMessageTask)rule.Tasks.Single();
 
-            Assert.AreEqual("Age must be numeric", task.Message);
+            Assert.AreEqual("Age is numeric", task.Message);
+        }
+
+        [TestMethod]
+        public void Rule_IsZeroes_Builder_Test()
+        {
+            var builder = new RuleBuilder()
+                .Condition(
+                    c => c.Field("Code").IsZeroes()
+                )
+                .Tasks(
+                    a => a.Message("Code is all zeroes")
+                );
+
+            var rule = builder.Build();
+
+            Assert.IsInstanceOfType(rule, typeof(Rule));
+
+            var condition = (FieldIsZeroes)rule.Condition;
+
+            Assert.AreEqual("Code", condition.FieldName);
+
+            var task = (RuleMessageTask)rule.Tasks.Single();
+
+            Assert.AreEqual("Code is all zeroes", task.Message);
         }
 
         [TestMethod]
@@ -195,7 +219,7 @@ namespace DataProcessing.Tests.Builders
         {
             var builder = new RuleBuilder()
                 .Condition(
-                    c => c.Field("Email").IsRegexMatch(@"^((([\w]+\.[\w]+)+)|([\w]+))@(([\w]+\.)+)([A-Za-z]{1,3})$")
+                    c => c.Field("Email").IsRegularExpressionMatch(@"^((([\w]+\.[\w]+)+)|([\w]+))@(([\w]+\.)+)([A-Za-z]{1,3})$")
                 )
                 .Tasks(
                     a => a.Message("Email is correct")
@@ -205,7 +229,7 @@ namespace DataProcessing.Tests.Builders
 
             Assert.IsInstanceOfType(rule, typeof(Rule));
 
-            var condition = (RegularExpressionCondition)rule.Condition;
+            var condition = (FieldIsRegularExpressionMatch)rule.Condition;
 
             Assert.AreEqual("Email", condition.FieldName);
 

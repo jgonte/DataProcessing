@@ -1,5 +1,4 @@
-﻿using System;
-using DataProcessing.Conditions;
+﻿using DataProcessing.Conditions;
 
 namespace DataProcessing.Builders
 {
@@ -9,6 +8,5 @@ namespace DataProcessing.Builders
         {
             return new FieldIsNumeric();
         }
-
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace DataProcessing.Conditions
 {
@@ -19,11 +18,6 @@ namespace DataProcessing.Conditions
         public bool Evaluate(IDictionary<string, object> record)
         {
             return !(Condition.Evaluate(record));
-        }
-
-        public void Format(IFormatter formatter)
-        {
-            formatter.Format(this);
         }
     }
 }

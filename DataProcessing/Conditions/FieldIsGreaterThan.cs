@@ -3,17 +3,13 @@ using Utilities;
 
 namespace DataProcessing.Conditions
 {
-    public class FieldIsGreaterThan<T> : SingleValuedField<T>
+    public class FieldIsGreaterThan<T> : SingleValuedField<T>,
+        IFieldIsGreaterThan
         where T : IComparable<T>
     {
         internal override bool EvaluateValue(object value)
         {
             return ((T)value).IsGreaterThan(Value);
-        }
-
-        public override void Format(IFormatter formatter)
-        {
-            formatter.Format(this);
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace DataProcessing.Conditions
 {
-    public class RegularExpressionCondition : SingleValuedField<string>,
+    public class FieldIsRegularExpressionMatch : SingleValuedField<string>,
         IRegularExpressionHolder
     {
         public string RegularExpression { get; set; }
@@ -10,11 +10,6 @@ namespace DataProcessing.Conditions
         internal override bool EvaluateValue(object value)
         {
             return Regex.IsMatch(value.ToString(), RegularExpression);
-        }
-
-        public override void Format(IFormatter formatter)
-        {
-            formatter.Format(this);
         }
     }
 }

@@ -33,10 +33,5 @@ namespace DataProcessing.Tasks
                 Message = Message
             });
         }
-
-        public void Format(IFormatter formatter)
-        {
-            formatter.Format(this);
-        }
     }
 }

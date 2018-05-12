@@ -50,15 +50,5 @@ namespace DataProcessing.BusinessRules
                 }
             }
         }
-
-        public void Format(IFormatter formatter)
-        {
-            Condition.Format(formatter);
-
-            foreach (var task in Tasks)
-            {
-                task.Format(formatter);
-            }
-        }
     }
 }
