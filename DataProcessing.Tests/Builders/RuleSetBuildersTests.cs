@@ -16,10 +16,10 @@ namespace DataProcessing.Tests.Builders
         {
             var builder = new RuleSetBuilder()
                 .Rules(
-                    r => r.Condition(
+                    r => r.If(
                         c => c.Field("Age").IsNotEqual(18)
                     )
-                    .Tasks(
+                    .Then(
                         a => a.Message("Age must be greater or equal to 18")
                     )
                 );

@@ -48,7 +48,7 @@ namespace DataProcessing.Tests.Builders
         public void Not_Field_Is_Equal_Builder_Test()
         {
             var builder = new NotConditionBuilder()
-                .Condition(
+                .If(
                     c => c.Field("Age").IsEqual(25)
                 );
 

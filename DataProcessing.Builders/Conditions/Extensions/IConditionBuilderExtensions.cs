@@ -21,7 +21,7 @@ namespace DataProcessing.Builders
             where T : IConditionBuilder
         {
             return new NotConditionBuilder()
-                .Condition(factory);
+                .If(factory);
         }
     }
 }

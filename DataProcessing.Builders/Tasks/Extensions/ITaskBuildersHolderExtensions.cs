@@ -13,7 +13,7 @@ namespace DataProcessing.Builders
             return builder;
         }
 
-        public static T Tasks<T>(this T builder, params Func<ITaskBuilder, ITaskBuilder>[] factories)
+        public static T Then<T>(this T builder, params Func<ITaskBuilder, ITaskBuilder>[] factories)
             where T : ITaskBuildersHolder
         {
             return Tasks(builder, factories.Select(f => f(null)).ToArray());

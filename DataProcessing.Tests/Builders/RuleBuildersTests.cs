@@ -14,10 +14,10 @@ namespace DataProcessing.Tests.Builders
         public void Rule_Is_Equal_Builder_Test()
         {
             var builder = new RuleBuilder()
-                .Condition(
+                .If(
                     c => c.Field("Gender").IsEqual('M')
                 )
-                .Tasks(
+                .Then(
                     a => a.Message("An error has occurred")
                 );
 
@@ -40,10 +40,10 @@ namespace DataProcessing.Tests.Builders
         public void Rule_Is_Not_Equal_Builder_Test()
         {
             var builder = new RuleBuilder()
-                .Condition(
+                .If(
                     c => c.Field("Age").IsNotEqual(18)
                 )
-                .Tasks(
+                .Then(
                     a => a.Message("Age must be 18")
                 );
 
@@ -66,10 +66,10 @@ namespace DataProcessing.Tests.Builders
         public void Rule_Is_Greater_Than_Builder_Test()
         {
             var builder = new RuleBuilder()
-                .Condition(
+                .If(
                     c => c.Field("Age").IsGreaterThan(18)
                 )
-                .Tasks(
+                .Then(
                     a => a.Message("Age must be less or equal 18")
                 );
 
@@ -92,10 +92,10 @@ namespace DataProcessing.Tests.Builders
         public void Rule_Is_Greater_Than_Or_Equal_Builder_Test()
         {
             var builder = new RuleBuilder()
-                .Condition(
+                .If(
                     c => c.Field("Age").IsGreaterThanOrEqual(18)
                 )
-                .Tasks(
+                .Then(
                     a => a.Message("Age must be less than 18")
                 );
 
@@ -118,10 +118,10 @@ namespace DataProcessing.Tests.Builders
         public void Rule_Is_Less_Than_Builder_Test()
         {
             var builder = new RuleBuilder()
-                .Condition(
+                .If(
                     c => c.Field("Age").IsLessThan(18)
                 )
-                .Tasks(
+                .Then(
                     a => a.Message("Age must be greater or equal 18")
                 );
 
@@ -144,10 +144,10 @@ namespace DataProcessing.Tests.Builders
         public void Rule_Is_Less_Than_Or_Equal_Builder_Test()
         {
             var builder = new RuleBuilder()
-                .Condition(
+                .If(
                     c => c.Field("Age").IsLessThanOrEqual(18)
                 )
-                .Tasks(
+                .Then(
                     a => a.Message("Age must be greater than 18")
                 );
 
@@ -170,10 +170,10 @@ namespace DataProcessing.Tests.Builders
         public void Rule_IsNumeric_Builder_Test()
         {
             var builder = new RuleBuilder()
-                .Condition(
+                .If(
                     c => c.Field("Age").IsNumeric()
                 )
-                .Tasks(
+                .Then(
                     a => a.Message("Age is numeric")
                 );
 
@@ -194,10 +194,10 @@ namespace DataProcessing.Tests.Builders
         public void Rule_IsZeroes_Builder_Test()
         {
             var builder = new RuleBuilder()
-                .Condition(
+                .If(
                     c => c.Field("Code").IsZeroes()
                 )
-                .Tasks(
+                .Then(
                     a => a.Message("Code is all zeroes")
                 );
 
@@ -218,10 +218,10 @@ namespace DataProcessing.Tests.Builders
         public void Rule_Regular_Expression_Builder_Test()
         {
             var builder = new RuleBuilder()
-                .Condition(
+                .If(
                     c => c.Field("Email").IsRegularExpressionMatch(@"^((([\w]+\.[\w]+)+)|([\w]+))@(([\w]+\.)+)([A-Za-z]{1,3})$")
                 )
-                .Tasks(
+                .Then(
                     a => a.Message("Email is correct")
                 );
 
@@ -242,10 +242,10 @@ namespace DataProcessing.Tests.Builders
         public void Rule_In_Condition_Builder_Test()
         {
             var builder = new RuleBuilder()
-                .Condition(
+                .If(
                     c => c.Field("Code").IsIn("01", "02", "03")
                 )
-                .Tasks(
+                .Then(
                     a => a.Message("Code is in one of those")
                 );
 
@@ -276,7 +276,7 @@ namespace DataProcessing.Tests.Builders
         public void Rule_Composite_With_IsNumeric_And_IsBetween_Builder_Test()
         {
             var builder = new RuleBuilder()
-                .Condition(
+                .If(
                     c => c.Field("Age").IsNumeric()
                         .And(
                             c.Field("Age").IsBetween("01", "62")
@@ -285,7 +285,7 @@ namespace DataProcessing.Tests.Builders
                                 )
                         )
                 )
-                .Tasks(
+                .Then(
                     a => a.Message("Incorrect age range")
                 );
 
@@ -326,7 +326,7 @@ namespace DataProcessing.Tests.Builders
         public void Rule_Composite_With_Not_IsNumeric_And_IsBetween_Builder_Test()
         {
             var builder = new RuleBuilder()
-                .Condition(
+                .If(
                     n => n.Not(
                         c =>c.Field("Age").IsNumeric()
                             .And(
@@ -337,7 +337,7 @@ namespace DataProcessing.Tests.Builders
                             )
                     )
                 )
-                .Tasks(
+                .Then(
                     a => a.Message("Incorrect age range")
                 );
 

@@ -12,7 +12,7 @@ namespace DataProcessing.Builders
             return builder;
         }
 
-        public static T Condition<T>(this T builder, Func<IConditionBuilder, IConditionBuilder> factory)
+        public static T If<T>(this T builder, Func<IConditionBuilder, IConditionBuilder> factory)
             where T : IConditionBuilderHolder
         {
             return Condition(builder, factory(null));
