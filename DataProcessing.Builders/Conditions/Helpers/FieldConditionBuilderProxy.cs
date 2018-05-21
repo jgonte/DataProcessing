@@ -64,6 +64,18 @@ namespace DataProcessing.Builders
                 .FieldName(_fieldName);
         }
 
+        public FieldIsAlphaNumericBuilder IsAlphaNumeric()
+        {
+            return new FieldIsAlphaNumericBuilder()
+                .FieldName(_fieldName);
+        }
+
+        public FieldIsWhiteSpaceBuilder IsWhiteSpace()
+        {
+            return new FieldIsWhiteSpaceBuilder()
+                .FieldName(_fieldName);
+        }
+
         public FieldIsZeroesBuilder IsZeroes()
         {
             return new FieldIsZeroesBuilder()

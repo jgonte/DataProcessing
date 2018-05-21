@@ -75,7 +75,7 @@ namespace DataProcessing.Tests.Builders
         public void Field_Is_Numeric_Builder_With_Substring_Test()
         {
             Func<IConditionBuilder, IConditionBuilder> factory = c => c.Field("Age").IsNumeric()
-                .InputSource(
+                .InputFilter(
                     f => f.Substring().StartIndex(2).EndIndex(3)
                 );
 
@@ -88,6 +88,35 @@ namespace DataProcessing.Tests.Builders
             Assert.AreEqual(2, function.StartIndex);
 
             Assert.AreEqual(3, function.EndIndex);
+        }
+
+        [TestMethod]
+        public void Field_Is_AlphaNumeric_Builder_With_Substring_Test()
+        {
+            Func<IConditionBuilder, IConditionBuilder> factory = c => c.Field("Code").IsAlphaNumeric()
+                .InputFilter(
+                    f => f.Substring().StartIndex(2).EndIndex(3)
+                );
+
+            var condition = (FieldIsAlphaNumeric)factory(null).Build();
+
+            Assert.AreEqual("Code", condition.FieldName);
+
+            var function = (Substring)condition.InputSource;
+
+            Assert.AreEqual(2, function.StartIndex);
+
+            Assert.AreEqual(3, function.EndIndex);
+        }
+
+        [TestMethod]
+        public void Field_Is_WhiteSpace_Builder_Test()
+        {
+            Func<IConditionBuilder, IConditionBuilder> factory = c => c.Field("Code").IsWhiteSpace();
+
+            var condition = (FieldIsWhiteSpace)factory(null).Build();
+
+            Assert.AreEqual("Code", condition.FieldName);
         }
 
         [TestMethod]

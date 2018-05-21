@@ -139,6 +139,88 @@ namespace DataProcessing.Tests
         }
 
         [TestMethod]
+        public void Rule_Is_AlphaNumeric_Test()
+        {
+            var messages = new List<RuleMessage>();
+
+            var context = new RuleContext(messages, 1);
+
+            var rule = new Rule
+            {
+                Condition = new FieldIsAlphaNumeric
+                {
+                    FieldName = "Code"
+                },
+                Tasks = new List<ITask>
+                {
+                    new RuleMessageTask("Field is alphanumeric")
+                }
+            };
+
+            var record = new Dictionary<string, object>
+            {
+                { "Code", "01A" }
+            };
+
+            rule.Fire(context, record);
+
+            Assert.AreEqual("Field is alphanumeric", ((RuleMessageTask)rule.Tasks.Single()).Message);
+
+            Assert.AreEqual("Code", context.FieldNames.Single());
+
+            Assert.AreEqual(1, messages.Count);
+
+            var message = messages.Single();
+
+            Assert.AreEqual(1, message.Line);
+
+            Assert.AreEqual("Code", message.FieldNames.Single());
+
+            Assert.AreEqual("Field is alphanumeric", message.Message);
+        }
+
+        [TestMethod]
+        public void Rule_Is_WhiteSpace_Test()
+        {
+            var messages = new List<RuleMessage>();
+
+            var context = new RuleContext(messages, 1);
+
+            var rule = new Rule
+            {
+                Condition = new FieldIsWhiteSpace
+                {
+                    FieldName = "Code"
+                },
+                Tasks = new List<ITask>
+                {
+                    new RuleMessageTask("Field is white space")
+                }
+            };
+
+            var record = new Dictionary<string, object>
+            {
+                { "Code", "  " }
+            };
+
+            rule.Fire(context, record);
+
+            Assert.AreEqual("Field is white space", ((RuleMessageTask)rule.Tasks.Single()).Message);
+
+            Assert.AreEqual("Code", context.FieldNames.Single());
+
+            Assert.AreEqual(1, messages.Count);
+
+            var message = messages.Single();
+
+            Assert.AreEqual(1, message.Line);
+
+            Assert.AreEqual("Code", message.FieldNames.Single());
+
+            Assert.AreEqual("Field is white space", message.Message);
+        }
+
+        [TestMethod]
         public void Rule_In_Test()
         {
             var messages = new List<RuleMessage>();

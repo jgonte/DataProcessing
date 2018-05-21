@@ -1,6 +1,6 @@
 ﻿namespace DataProcessing.Functions
 {
-    public class Substring : IUnaryFunction<string>,
+    public class Substring : IUnaryFunction<string, string>,
         IStartEndIndexesHolder
     {
         public int StartIndex { get; set; }
