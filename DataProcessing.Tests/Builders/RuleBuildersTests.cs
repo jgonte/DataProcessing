@@ -331,6 +331,7 @@ namespace DataProcessing.Tests.Builders
                         c =>c.Field("Age").IsNumeric()
                             .And(
                                 c.Field("Age").IsBetween("01", "62")
+                                    .InputFilter(f => f.ToInteger())
                                     .Or(
                                         c.Field("Age").IsBetween("67", "90")
                                     )

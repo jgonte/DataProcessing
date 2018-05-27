@@ -1,6 +1,5 @@
-﻿using System;
+﻿using DataProcessing.Builders;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DataProcessing.Builders;
 
 namespace DataProcessing.Tests.Builders
 {
@@ -10,9 +9,7 @@ namespace DataProcessing.Tests.Builders
         [TestMethod]
         public void Substring_Builder_Test()
         {
-            var builder = new SubstringBuilder()
-                .StartIndex(0)
-                .EndIndex(3);
+            var builder = new SubstringBuilder(startIndex: 0, endIndex: 3);
 
             var function = builder.Build();
 

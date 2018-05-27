@@ -5,7 +5,7 @@ namespace DataProcessing.Builders
 {
     public static class IUnaryFunctionHolderExtensions
     {
-        public static T InputSource<T>(this T builder, IUnaryFunction unaryFunction)
+        public static T InputFilter<T>(this T builder, IUnaryFunction unaryFunction)
             where T : IUnaryFunctionHolder
         {
             builder.InputSource = unaryFunction;
@@ -13,12 +13,12 @@ namespace DataProcessing.Builders
             return builder;
         }
 
-        public static T InputSource<T>(this T builder, Func<IFunctionBuilder, IFunctionBuilder> factory)
+        public static T InputFilter<T>(this T builder, Func<IFunctionBuilder, IFunctionBuilder> factory)
             where T : IUnaryFunctionHolder
         {
             var function = (IUnaryFunction)factory(null).Build();
 
-            return InputSource(builder, function);
+            return InputFilter(builder, function);
         }
     }
 }
