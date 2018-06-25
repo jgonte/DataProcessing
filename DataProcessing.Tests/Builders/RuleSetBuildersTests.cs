@@ -4,7 +4,6 @@ using DataProcessing.Conditions;
 using DataProcessing.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
-using Utilities;
 
 namespace DataProcessing.Tests.Builders
 {

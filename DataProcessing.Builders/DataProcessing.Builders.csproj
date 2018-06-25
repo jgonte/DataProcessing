@@ -9,4 +9,8 @@
     <ProjectReference Include="..\DataProcessing\DataProcessing.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Tasks\Output\" />
+  </ItemGroup>
+
 </Project>
