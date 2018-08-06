@@ -7,7 +7,7 @@ using System.Linq;
 namespace DataProcessing.Tests.Tasks
 {
     [TestClass]
-    public class TasksTests
+    public class RuleMessageTasksTests
     {
         [TestMethod]
         public void RuleMessageTask_Test()

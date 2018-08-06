@@ -4,12 +4,14 @@ using Utilities;
 
 namespace DataProcessing.BusinessRules
 {
-    public class RuleSet : INamed
+    public class RuleSet : INamed, IDescribed
     {  
         /// <summary>
         /// The name of the rule set
         /// </summary>
         public string Name { get; set; }
+
+        public string Description { get; set; }
 
         /// <summary>
         /// The rules contained in this rule set
