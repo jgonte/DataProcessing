@@ -4,6 +4,6 @@ namespace DataProcessing.Conditions
 {
     public interface IConditionsHolder
     {
-        IEnumerable<ICondition> Conditions { get; set; }
+        List<ICondition> Conditions { get; set; }
     }
 }

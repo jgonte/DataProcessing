@@ -18,7 +18,7 @@ namespace DataProcessing.Builders
         {
             ruleSet.Name = ((INamed)this).Name;
 
-            ruleSet.Rules = ((IRuleBuildersHolder)this).RuleBuilders.Select(b => b.Build());
+            ruleSet.Rules = ((IRuleBuildersHolder)this).RuleBuilders.SelectToList(b => b.Build());
         }
     }
 }

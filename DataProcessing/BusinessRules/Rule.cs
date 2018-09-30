@@ -20,7 +20,7 @@ namespace DataProcessing.BusinessRules
         /// <summary>
         /// The tasks to be fired when the condition evaluates to true
         /// </summary>
-        public IEnumerable<ITask> Tasks { get; set; }
+        public List<ITask> Tasks { get; set; } = new List<ITask>();
 
         public bool IsActive { get; set; } = true;
 

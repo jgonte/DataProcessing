@@ -2,6 +2,7 @@
 using DataProcessing.Tasks;
 using System.Collections.Generic;
 using System.Linq;
+using Utilities;
 using Utilities.Builders;
 
 namespace DataProcessing.Builders
@@ -18,7 +19,7 @@ namespace DataProcessing.Builders
         {
             rule.Condition = ((IConditionBuilderHolder)this).ConditionBuilder.Build();
 
-            rule.Tasks = ((ITaskBuildersHolder)this).TaskBuilders.Select(b => b.Build());
+            rule.Tasks = ((ITaskBuildersHolder)this).TaskBuilders.SelectToList(b => b.Build());
         }
     }
 }

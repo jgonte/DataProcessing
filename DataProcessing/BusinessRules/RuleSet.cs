@@ -16,7 +16,7 @@ namespace DataProcessing.BusinessRules
         /// <summary>
         /// The rules contained in this rule set
         /// </summary>
-        public IEnumerable<Rule> Rules { get; set; }
+        public List<Rule> Rules { get; set; } = new List<Rule>();
 
         /// <summary>
         /// Whether this rule set has been halted by firing a rule

@@ -9,7 +9,7 @@ namespace DataProcessing.Conditions
     {
         public string Description { get; set; }
 
-        public IEnumerable<ICondition> Conditions { get; set; }
+        public List<ICondition> Conditions { get; set; }
 
         public IEnumerable<string> FieldNames => Conditions
             .Where(c => c is IFieldNamesHolder)

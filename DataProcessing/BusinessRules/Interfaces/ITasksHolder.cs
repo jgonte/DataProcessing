@@ -11,6 +11,6 @@ namespace DataProcessing.BusinessRules
         /// <summary>
         /// The tasks held by the object
         /// </summary>
-        IEnumerable<ITask> Tasks { get; set; }
+        List<ITask> Tasks { get; set; }
     }
 }

@@ -19,8 +19,6 @@ namespace DataProcessing.BusinessRules
         /// </summary>
         public HashSet<string> FieldNames { get; set; }
 
-        private int line;
-
         public RuleContext(List<RuleMessage> messages, int line)
         {
             Messages = messages;
