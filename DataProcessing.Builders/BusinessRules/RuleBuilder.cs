@@ -19,7 +19,7 @@ namespace DataProcessing.Builders
         {
             rule.Condition = ((IConditionBuilderHolder)this).ConditionBuilder.Build();
 
-            rule.Tasks = ((ITaskBuildersHolder)this).TaskBuilders.SelectToList(b => b.Build());
+            rule.Tasks = ((ITaskBuildersHolder)this).TaskBuilders.ToList(b => b.Build());
         }
     }
 }

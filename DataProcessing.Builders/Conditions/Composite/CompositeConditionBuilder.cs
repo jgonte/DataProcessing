@@ -20,7 +20,7 @@ namespace DataProcessing.Builders
         {
             condition.Description = ((IDescribed)this).Description;
 
-            condition.Conditions = ((IConditionBuildersHolder)this).ConditionBuilders.SelectToList(b => b.Build());
+            condition.Conditions = ((IConditionBuildersHolder)this).ConditionBuilders.ToList(b => b.Build());
         }
 
         ICondition IBuilder<ICondition>.Build()
